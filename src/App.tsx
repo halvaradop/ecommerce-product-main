@@ -1,8 +1,9 @@
+import { Header } from "./components/Header"
 
-const App = (): JSX.Element => {
+const App = () => {
   return (
     <>
-      
+      <Header/>
     </>
   )
 }
