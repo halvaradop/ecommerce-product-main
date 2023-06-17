@@ -1,10 +1,9 @@
-import { useEffect, useRef, useState, MouseEvent } from "react" 
+import { useRef, useState, MouseEvent } from "react" 
 import { Button } from "./Button"
 import { SliderItems } from "./SliderItem"
 import minus from "../assets/minus.svg"
 import plus from "../assets/plus.svg"
 import cart from "../assets/cart.svg"
-import close from "../assets/close.svg"
 
 type MainProps = {
     handleClickBuy: (price: number, quantity: number, title: string) => void
@@ -35,10 +34,14 @@ const Main = ({ handleClickBuy }: MainProps ) => {
     }
 
     const handleOpenModal = (event: MouseEvent <HTMLElement> ) => {
-        modalRef.current?.showModal()
+        event.target
+        if(matchMedia('(min-width: 900px)').matches) {
+            modalRef.current?.showModal()
+        }
     }
 
     const handleCloseModal = (event: MouseEvent <HTMLElement> ) => {
+        event.target
         modalRef.current?.close()
     }
 

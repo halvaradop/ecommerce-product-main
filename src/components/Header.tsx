@@ -1,4 +1,4 @@
-import { useRef, useState } from "react"
+import { useRef, useState, useEffect } from "react"
 import menu from "../assets/menu.svg"
 import logo from "../assets/logo.svg"
 import cart from "../assets/cart.svg"
@@ -24,6 +24,15 @@ type HeaderProps = {
 const Header = ({ cartList, onDelete }: HeaderProps ) => {
     const [cartIsOpen, setCartIsOpen] = useState(false)
     const menuRef = useRef <HTMLElement> (null)
+
+    useEffect(() => {
+        const matchMenu = () => {
+            menuRef.current?.classList.remove('translate-x-0')
+        }
+        const match = matchMedia('(min-width: 840px')
+        match.addEventListener('change', matchMenu)
+        return () => match.removeEventListener('change', matchMenu)
+    }, [])
 
     const handleMenu = () => {
         menuRef.current?.classList.toggle("translate-x-0")
