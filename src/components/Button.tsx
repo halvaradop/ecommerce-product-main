@@ -1,9 +1,9 @@
 interface Props {
-    className: String,
-    children: JSX.Element | string, 
+    className?: String,
+    children: React.ReactNode | string, 
     color: string, 
     size: string,
-    onClick: () => void
+    onClick?: () => void
 }
 
 interface ColorVariants {
@@ -16,7 +16,7 @@ interface SizeVariants {
 
 const Button = ({ className, children, color, size, onClick }: Props) => {
     const colorVariants: ColorVariants = {
-        "orange": "text-white font-bold bg-orange focus:outline-none shadow-2xl shadow-orange"
+        "orange": "text-white font-bold bg-orange focus:outline-none shadow-sm shadow-orange"
     }
     const sizeVariants: SizeVariants = {
         sm: "h-5 px-1 text-sm rounded-md"

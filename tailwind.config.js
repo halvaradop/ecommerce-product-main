@@ -10,7 +10,7 @@ export default {
   theme: {
     extend: {
       screens: {
-        base: '900px'
+        base: '840px'
       },
       spacing: {
         '0.2': '0.2rem',
@@ -65,8 +65,15 @@ export default {
           200: 'hsl(220, 14%, 75%)',
           300: 'hsl(223, 64%, 98%)'
         }
+      },
+      boxShadow: {
+        list: '-10px 6px 22px 4px rgba(0,0,0,0.1)'
       }
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(({ addVariant }) => {
+      addVariant('is-img', '&.is-active')
+    })
+  ],
 }
