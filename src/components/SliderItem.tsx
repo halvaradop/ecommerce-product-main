@@ -13,8 +13,13 @@ const sliderClassImages = new Map <number, string> ([
     [3, "-translate-x-[300%]"],
 ])
 
+type SliderProps = {
+    className?: string,
+    children?: React.ReactNode,
+    onDoubleClick?: (event: MouseEvent <HTMLElement>) => void
+}
 
-const SliderItems = () => {
+const SliderItems = ({ className, children, onDoubleClick }: SliderProps ) => {
     const [index, setIndex] = useState(0)
     const sliderRef = useRef <HTMLElement> (null)
     const figureRef = useRef <HTMLElement | null> (null)
@@ -56,8 +61,8 @@ const SliderItems = () => {
     }
 
     return (
-        <div className="max-h-[50rem] flex items-center relative overflow-hidden base:max-h-none base:flex-col base:gap-y-2">
-            <section className="w-full flex transition-all duration-500 base:max-h-[50rem]" ref={sliderRef}>
+        <div className={`max-h-[50rem] flex items-center relative overflow-hidden base:max-h-none base:flex-col base:gap-y-2 ${className}`}>
+            <section className="w-full flex transition-all duration-500 base:max-h-[50rem]" ref={sliderRef} onDoubleClick={onDoubleClick}>
                 {imagesShooes.map((link, key) =>
                     <img className="w-full base:flex-1 base:rounded-lg" key={key} src={link} alt="shooes img" />
                 )}
@@ -70,11 +75,16 @@ const SliderItems = () => {
             </figure>}
             <figure className="hidden base:w-full base:flex base:items-center base:justify-start base:gap-x-2" ref={figureRef}>
                 {imagesShooesThumbnail.map((link, key) => 
-                    <img className="base:w-6 base:aspect-square base:rounded-sm base:border-2 base:border-transparent lg:w-7.5 hover:cursor-pointer is-img:border-orange" data-index={key} key={key} src={link} alt="picture thumbnail" onClick={handleClickThumbnail} />
+                    <img className="base:w-6 base:aspect-square base:rounded-sm base:border-[3px] base:border-transparent lg:w-7.5 hover:cursor-pointer is-img:border-orange" data-index={key} key={key} src={link} alt="picture thumbnail" onClick={handleClickThumbnail} />
                 )}
             </figure>
+            {children}
         </div>
     )
+}
+
+SliderItems.defaultProps = {
+    className: ""
 }
 
 export { SliderItems }
