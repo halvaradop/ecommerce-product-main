@@ -13,7 +13,7 @@ cd ecommerce-product-main
 ```bash
 npm install
 ```
-### Despliegue
+### Deployment
 To run the project on your local server, use the following command:
 ```bash
 npm run dev
